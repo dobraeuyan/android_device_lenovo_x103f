@@ -16,9 +16,9 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
-#modify by yangtao change ro.telephony.default_network to 9 for A6501M-556 20160523
-# Start in gsm_wcdma_lte mode
-ro.telephony.default_network=9
+
+# Lockscreen rotate override
+lockscreen.rot_override=true
 
 debug.sf.hw=1
 debug.egl.hw=1
@@ -26,7 +26,6 @@ debug.composition.type=dyn
 #modify by xingbin for display flicker
 debug.hwc.dynThreshold=2.0
 debug.mdpcomp.logs=0
-dalvik.vm.heapsize=36m
 dalvik.vm.zygotemaxfailedboots=5
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
@@ -43,7 +42,7 @@ sys.hwc.gpu_perf_mode=1
 #tunnel.audiovideo.decode=true
 #lpa.decode=false
 #lpa.use-stagefright=true
-#persist.speaker.prot.enable=false
+persist.speaker.prot.enable=false
 
 #
 # system props for the cne module
@@ -91,11 +90,6 @@ persist.tuning.qdcm=1
 # System property for Screen Color
 ro.qcom.screencolor=1
 
-#
-# System props for telephony
-# System prop to turn on CdmaLTEPhone always
-telephony.lteOnCdmaDevice=1
-
 #Simulate sdcard on /data/media
 #
 persist.fuse_sdcard=true
@@ -105,6 +99,8 @@ persist.fuse_sdcard=true
 # System prop to allocate Reprocess buffer as "1"
 # during Longshot usecase
 persist.camera.longshot.stages=1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 #
 # dirty ratio value when enable ums
@@ -146,11 +142,6 @@ voice.voip.conc.disabled=true
 #Audio VoIP / playback record concurrency flags
 rec.playback.conc.disabled=true
 
-#Set composition for USB
-persist.sys.usb.config=diag,serial_smd,serial_tty,mass_storage,adb
-#Set read only default composition for USB
-ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
-
 # set max background services
 ro.config.max_starting_bg=8
 
@@ -180,6 +171,9 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
+# Storage
+#ro.sys.sdcardfs=true
+
 #Enable Delay service restart
 ro.am.reschedule_service=true
 
@@ -198,5 +192,14 @@ ro.sys.fw.bservice_age=5000
 #set device emmc size
 ro.emmc_size=8GB
 
-#Added by zhangxin for QQ video call rotation, A650X-M, A6501M-177/A6502M-140, 2016-6-13
-ro.qq.camera.sensor=3
+#Bluetooth
+qcom.bluetooth.soc=smd
+
+#Tablet Wifi
+ro.carrier=wifi-only
+
+# NO ril device
+ro.radio.noril=1
+
+# Display rotation, this is a landscape device
+ro.sf.hwrotation=90

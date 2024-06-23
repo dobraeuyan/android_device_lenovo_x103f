@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2012 The CyanogenMod Project
+# Copyright (C) 2012 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,27 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 #
-# Boot animation
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 1280
+# This file is the build configuration for a full Android
+# build for toro hardware. This cleanly combines a set of
+# device-specific aspects (drivers) with a device-agnostic
+# product configuration (apps). Except for a few implementation
+# details, it only fundamentally contains two inherit-product
+# lines, full and toro, hence its name.
+#
 
-# Release name
-PRODUCT_RELEASE_NAME := msm8909
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, device/lenovo/x103f/device.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
-
-# Inherit device configuration
-$(call inherit-product, device/lenovo/x103f/device_x103f.mk)
-
-# Device identifier. This must come after all inclusions
+# Discard inherited values and use our own instead.
 PRODUCT_NAME := lineage_x103f
 PRODUCT_BRAND := lenovo
 PRODUCT_DEVICE := x103f
 PRODUCT_MODEL := TB-X103F
 PRODUCT_MANUFACTURER := lenovo
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=Lenovo/TB-X103F/TB-X103F:6.0.1/LenovoTB-X103F/TB-X103F_S000038_180317_ROW:user/release-keys \
-	PRIVATE_BUILD_DESC="msm8909-user 6.0.1 LenovoTB-X103F TB-X103F_S000038_180317_ROW release-keys"
