@@ -34,12 +34,13 @@ Front Camera | 2 MP
 | **Camera Photos**         | :heavy_check_mark: |
 | **Videocamera**           | |
 | **Audio**                 | :heavy_check_mark: |
-| **Jack**                  | |
+| **Jack**                  | :heavy_check_mark: |
 | **Microphone**            | :heavy_check_mark: |
 | **Vibration**             | :heavy_check_mark: |
 | **USB**                   | :heavy_check_mark: |
 | **Buttons**               | :heavy_check_mark: |
 | **Rotation**              | :heavy_check_mark: |
 | **Thermal**               | :heavy_check_mark: |
-| **FM Radio**              | |
-| **SELinux enforced**      | |
+| **FM Radio**              | :heavy_check_mark: |
+| **SELinux enforced**      | :heavy_check_mark: |
+

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project <http://www.cyanogenmod.org>
+ * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,10 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME        "Lenovo Tab 10"
+#define BTM_DEF_LOCAL_NAME	"Lenovo Tab 10"
 
-#define BLE_VND_INCLUDED          TRUE
-#define BLUETOOTH_QTI_SW          TRUE
-#define BT_CLEAN_TURN_ON_DISABLED TRUE
-#define MAX_ACL_CONNECTIONS       7
+#define BLE_VND_INCLUDED	TRUE
+#define BLUETOOTH_QTI_SW	TRUE
+#define MAX_ACL_CONNECTIONS	7
 
 #endif
