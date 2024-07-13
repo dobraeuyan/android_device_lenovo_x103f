@@ -3,86 +3,86 @@ ro.vendor.audio.sdk.fluencetype=none
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
-
 ro.qc.sdk.audio.ssr=false
+persist.speaker.prot.enable=false
+tunnel.audio.encode=false
+audio.offload.buffer.size.kb=64
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+audio.offload.gapless.enabled=true
+voice.playback.conc.disabled=true
+voice.record.conc.disabled=true
+voice.voip.conc.disabled=true
+rec.playback.conc.disabled=true
+use.voice.path.for.pcm.voip=true
+sys.audio.init=false
 
 # Battery
 ro.cutoff_voltage_mv=3200
 
-#Bluetooth
+# Bluetooth
 qcom.bluetooth.soc=pronto
 ro.qualcomm.bt.hci_transport=smd
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
 
+# B Service Adj Transition
+ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
+
 # Camera
 persist.camera.longshot.stages=1
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 
+# CNE Module
+persist.cne.feature=1
+
+# Data Modules
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+
+# Delay Service Restart
+ro.am.reschedule_service=true
+
 # Display
 ro.opengles.version=196608
 ro.sf.lcd_density=160
 ro.qualcomm.cabl=0
+ro.qcom.screencolor=1
+
+# Dolby
+audio.dolby.ds2.enabled=true
 
 # Factory Reset Protection
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 
-# No RIL
-ro.carrier=wifi-only
-ro.radio.noril=1
+# FM Transmitter
+ro.fm.transmitter=false
 
-# Other
-qemu.hw.mainkeys=0
-ro.oem_unlock_supported=0
+# HWUI
+ro.hwui.texture_cache_size=72
+ro.hwui.layer_cache_size=48
+ro.hwui.path_cache_size=32
+ro.hwui.gradient_cache_size=1
+ro.hwui.drop_shadow_cache_size=6
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=1024
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=512
+ro.hwui.r_buffer_cache_size=8
+ro.hwui.text_gamma_correction=true
 
-# Perf
-ro.config.max_starting_bg=8
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.core_ctl_min_cpu=1
-ro.core_ctl_max_cpu=4
+# IO Scheduler
+sys.io.scheduler=noop
 
-# RIL
-rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
-
-# Storage
-ro.sys.sdcardfs=true
-
-###########################################
-#
-# system.prop for msm8909
-#
-
-# Lockscreen rotate override
+# Lockscreen
 lockscreen.rot_override=true
 
-debug.sf.hw=1
-debug.egl.hw=1
-debug.composition.type=dyn
-#modify by xingbin for display flicker
-debug.hwc.dynThreshold=2.0
-debug.mdpcomp.logs=0
-dalvik.vm.zygotemaxfailedboots=5
-dev.pm.dyn_samplingrate=1
-persist.demo.hdmirotationlock=false
-
-#enable dirty rect
-debug.sf.swaprect=1
-#enable app buffer composition
-debug.sf.hwc.canUseABC=1
-
-#enable gpu perf hint
-sys.hwc.gpu_perf_mode=1
-persist.speaker.prot.enable=false
-
-#
-# system props for the cne module
-#
-persist.cne.feature=1
-
-#system props for the MM modules
+# MM Modules
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
 media.stagefright.enable-aac=true
@@ -91,94 +91,51 @@ media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
-#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC
-#modify by lizhongnian change 3ffff to 33ffff A6501M-104 20160405
 mm.enable.qcom_parser=3407871
-# Default to AwesomePlayer
 media.stagefright.use-awesome=false
 
-#
-# system props for the data modules
-#
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
-persist.data.mode=concurrent
+# No RIL
+ro.carrier=wifi-only
+ro.radio.noril=1
 
-#system props for time-services
-persist.timed.enable=true
+# Other
+qemu.hw.mainkeys=0
+ro.oem_unlock_supported=0
+ro.config.low_ram=false
+persist.fuse_sdcard=true
+ro.sys.umsdirtyratio=20
+dev.pm.dyn_samplingrate=1
 
-# System property for QDCM
+# Perf
+ro.config.max_starting_bg=6
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.core_ctl_min_cpu=1
+ro.core_ctl_max_cpu=4
+sys.hwc.gpu_perf_mode=1
+
+# QDCM
 persist.tuning.qdcm=1
 
-# System property for Screen Color
-ro.qcom.screencolor=1
+# RIL
+rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
 
-#Simulate sdcard on /data/media
-#
-persist.fuse_sdcard=true
-
-#
-# dirty ratio value when enable ums
-#
-ro.sys.umsdirtyratio=20
-
-#Set for msm8909
-tunnel.audio.encode = false
-ro.config.low_ram=false
-#Buffer size in kbytes for compress offload playback
-audio.offload.buffer.size.kb=64
-#Minimum duration for offload playback in secs
-audio.offload.min.duration.secs=30
-#Enable offload audio video playback by default
-audio.offload.video=true
-#enable voice path for PCM VoIP by default
-use.voice.path.for.pcm.voip=true
-
-#
-#System property for FM transmitter
-#
-ro.fm.transmitter=false
-#enable dsp gapless mode by default
-audio.offload.gapless.enabled=true
-
-#Audio voice concurrency related flags
-voice.playback.conc.disabled=true
-voice.record.conc.disabled=true
-voice.voip.conc.disabled=true
-
-#Audio VoIP / playback record concurrency flags
-rec.playback.conc.disabled=true
-
-#property to enable user to access Google WFD settings
-persist.debug.wfd.enable=0
-#propery to enable VDS WFD solution
-persist.hwc.enable_vds=1
-
-#property to enable image unload by audio HAL
-sys.audio.init=false
-
-#property to enable DS2 dap
-audio.dolby.ds2.enabled=true
-
-#property to change touch screen resolution
-persist.sys.synaptics_dsx.qhd=false
-
-#HWUI properties
-ro.hwui.text_large_cache_height=2048
-
-# enable sta proxy bydefault
+# STA Proxy
 persist.mm.sta.enable=1
-#Trim properties
+
+# Storage
+ro.sys.sdcardfs=true
+
+# Time Services
+persist.timed.enable=true
+
+# Trim Properties
 ro.sys.fw.use_trim_settings=true
 ro.sys.fw.empty_app_percent=50
 ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
-#Enable Delay service restart
-ro.am.reschedule_service=true
-
-#Enable B service adj transition by default
-ro.sys.fw.bservice_enable=true
-ro.sys.fw.bservice_limit=5
-ro.sys.fw.bservice_age=5000
+# WFD
+persist.debug.wfd.enable=0
+persist.hwc.enable_vds=1

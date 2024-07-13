@@ -25,7 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.qcom.usb.rc
+import init.x103f.usb.rc
 
 on early-init
     symlink /data/tombstones /tombstones
@@ -58,8 +58,8 @@ on init
 
 on fs
     wait /dev/block/bootdevice
-    mount_all fstab.qcom
-    swapon_all fstab.qcom
+    mount_all fstab.x103f
+    swapon_all fstab.x103f
     write /proc/sys/vm/swappiness 100
 
     chmod 664 /persist/serialno
@@ -212,7 +212,6 @@ on early-boot
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
     chown root audio /sys/kernel/boot_adsp/boot
-    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
     start rmt_storage
@@ -259,7 +258,13 @@ on boot
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
-
+    
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+    start vm_bms
+    
     setprop wifi.interface wlan0
 
 #   Define TCP buffer sizes for various networks
@@ -412,7 +417,6 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 on property:bluetooth.isEnabled=true
-    start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 on property:bluetooth.sap.status=running
@@ -430,18 +434,7 @@ on property:bluetooth.dun.status=stopped
 on property:ro.bluetooth.ftm_enabled=true
     start ftmd
 
-service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
-    class core
-    user root
-    oneshot
-
-service qcom-c_main-sh /system/bin/sh /init.class_main.sh
-    class main
-    user root
-    oneshot
-
 on property:vold.decrypt=trigger_restart_framework
-    start qcom-c_main-sh
     start config_bluetooth
     start wcnss-service
 
@@ -474,12 +467,12 @@ service start_hci_filter /system/bin/wcnss_filter
     group bluetooth qcom_diag
     disabled
 
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+service config_bluetooth /system/bin/sh /system/etc/init.x103f.bt.sh "onboot"
     class core
     user root
     oneshot
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+service hciattach /system/bin/sh /system/etc/init.x103f.bt.sh
     class late_start
     user bluetooth
     group bluetooth net_bt_admin
@@ -569,13 +562,6 @@ on property:ro.use_data_netmgrd=false
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
-
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet net_admin net_raw
-    disabled
-    oneshot
 
 service amp_init /system/bin/amploader -i
     class late_start
@@ -703,7 +689,7 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+service fm_dl /system/bin/sh /system/etc/init.x103f.fm.sh
     class late_start
     user system
     group system
@@ -726,31 +712,12 @@ on property:drmdiag.load=1
 on property:drmdiag.load=0
     stop drmdiag
 
-service qcom-sh /system/bin/sh /init.qcom.sh
+service qcom-sh /system/bin/sh /init.x103f.sh
     class late_start
     user root
     oneshot
 
-service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-    seclabel u:r:qti-testscripts:s0
-
-service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
-    class late_start
-    group wifi inet
-    disabled
-    oneshot
-
-service wifi-crda /system/bin/sh /system/etc/init.crda.sh
+service qcom-post-boot /system/bin/sh /system/etc/init.x103f.post_boot.sh
     class late_start
     user root
     disabled
@@ -763,8 +730,6 @@ service atfwd /system/bin/ATFWD-daemon
     group system radio
 
 on property:sys.boot_completed=1
-    start qcom-post-boot
-    start qti-testscripts
     start atfwd
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
@@ -874,11 +839,6 @@ on property:persist.sys.qlogd=1
 on property:persist.sys.qlogd=0
     stop qlogd
 
-service bms-sh /system/bin/sh /init.qcom.bms.sh
-    class main
-    user root
-    oneshot
-
 service vm_bms /system/bin/vm_bms
     user root
     group root
@@ -946,13 +906,6 @@ on property:init.svc.surfaceflinger=stopped
 on property:init.svc.surfaceflinger=running
     start ppd
 
-service imsstarter /system/bin/sh /system/etc/init.qti.ims.sh
-    class main
-    oneshot
-
-on property:vold.decrypt=trigger_restart_framework
-    start imsstarter
-
 service imsdatadaemon /system/bin/imsdatadaemon
     class main
     user system
@@ -1009,6 +962,5 @@ on charger
     load_all_props
     start qcom-post-boot
     start qcom-usb-sh
-    start qcom-c_main-sh
     start irsc_util
     start qcomsysd

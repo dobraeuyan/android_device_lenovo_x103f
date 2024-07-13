@@ -111,23 +111,18 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.mdm.sh \
-    init.qcom.bms.sh \
-    init.qcom.rc \
-    init.qcom.serialno.sh \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    ueventd.qcom.rc
+    fstab.x103f \
+    init.x103f.bms.sh \
+    init.x103f.rc \
+    init.x103f.serialno.sh \
+    init.x103f.sh \
+    init.x103f.usb.rc \
+    ueventd.x103f.rc
 
 PRODUCT_PACKAGES += \
-    init.qcom.audio.sh \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh \
-    init.qcom.modem_links.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.wifi.sh \
-    init.qti.ims.sh
+    init.x103f.bt.sh \
+    init.x103f.fm.sh \
+    init.x103f.post_boot.sh
     
 # IRSC
 PRODUCT_COPY_FILES += \
