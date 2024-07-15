@@ -110,13 +110,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="high" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
@@ -163,13 +162,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
@@ -230,13 +228,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <!-- audio setting is ignored -->
       <Audio codec="aac"
              bitRate="156000"
@@ -358,13 +355,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <!-- audio setting is ignored -->
       <Audio codec="aac"
              bitRate="156000"
@@ -395,13 +391,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="high" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
@@ -448,13 +443,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="14000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <Audio codec="aac"
              bitRate="156000"
              sampleRate="48000"
@@ -528,13 +522,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-             bitRate="6000000"
+             bitRate="8000000"
              width="1280"
              height="720"
              frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <!-- audio setting is ignored -->
       <Audio codec="aac"
              bitRate="96000"
@@ -654,13 +647,12 @@
     </EncoderProfile>
 
     <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, Begin-->
       <Video codec="h264"
-                   bitRate="6000000"
+                   bitRate="8000000"
                    width="1280"
                    height="720"
                    frameRate="30" />
-    <!--Modified by zhangxin for video bitrate decrease,A650x-M,SW00188169,2016-05-26, End-->
+
       <!-- audio setting is ignored -->
       <Audio codec="aac"
                    bitRate="96000"
@@ -708,7 +700,7 @@
         maxHFRMode="0"  />
 
     <AudioEncoderCap name="aac" enabled="true"
-        minBitRate="8000" maxBitRate="96000"
+        minBitRate="8000" maxBitRate="192000"
         minSampleRate="8000" maxSampleRate="48000"
         minChannels="1" maxChannels="6" />
 
@@ -721,7 +713,6 @@
         minBitRate="5525" maxBitRate="12200"
         minSampleRate="8000" maxSampleRate="8000"
         minChannels="1" maxChannels="1" />
-
 <!--    <AudioEncoderCap name="lpcm" enabled="true"
         minBitRate="768000" maxBitRate="4608000"
         minSampleRate="48000" maxSampleRate="48000"

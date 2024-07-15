@@ -112,7 +112,6 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.x103f \
-    init.x103f.bms.sh \
     init.x103f.rc \
     init.x103f.serialno.sh \
     init.x103f.sh \
@@ -177,11 +176,6 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.carrier=wifi-only
-    
-# Screen density
-#PRODUCT_AAPT_CONFIG := normal
-#PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi mdpi ldpi
-#PRODUCT_AAPT_PREF_CONFIG := land 
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -194,7 +188,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml
-    
+
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+
 # Touchscreen
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml

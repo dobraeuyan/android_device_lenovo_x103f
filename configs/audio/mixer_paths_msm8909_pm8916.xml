@@ -52,16 +52,12 @@
     <ctl name="HPHL" value="ZERO" />
     <ctl name="HPHR" value="ZERO" />
     <ctl name="SPK DAC Switch" value="0" />
-    <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin -->
     <ctl name="Speaker Ext" value="DISABLE" />
-    <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end -->
     <ctl name="Speaker Boost" value="ENABLE" />
     <ctl name="MICBIAS CAPLESS Switch" value="0" />
-    <!-- Added by zhangwei to fix audio loopback test fail 2016-03-01 begin -->
     <ctl name="LOOPBACK Mode" value="DISABLE" />
     <ctl name="Loopback MCLK" value="DISABLE" />
     <ctl name="IIR1 INP1 MUX" value="ZERO" />
-    <!-- Added by zhangwei to fix audio loopback test fail 2016-03-01 end -->
     <ctl name="EAR PA Boost" value="ENABLE" />
     <ctl name="EAR PA Gain" value="POS_1P5_DB" />
     <ctl name="MI2S_RX Channels" value="One" />
