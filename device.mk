@@ -1,6 +1,6 @@
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
-$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -68,11 +68,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+    
 # Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapsize=256m \
     dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapgrowthlimit=192m \
-    dalvik.vm.heapsize=256m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
@@ -111,6 +115,9 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_PACKAGES += \
+    libinit_msm8909
+
+PRODUCT_PACKAGES += \
     fstab.x103f \
     init.x103f.rc \
     init.x103f.serialno.sh \
@@ -122,7 +129,6 @@ PRODUCT_PACKAGES += \
     init.x103f.bt.sh \
     init.x103f.fm.sh \
     init.x103f.post_boot.sh
-    
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config  
@@ -173,6 +179,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml
 
+# Rotation
+PRODUCT_PROPERTY_OVERRIDES := \
+    persist.panel.orientation=90
+    
 # RIL
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.carrier=wifi-only
@@ -214,9 +224,7 @@ PRODUCT_PACKAGES += \
     hostapd \
     libwpa_client \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    wpa_supplicant_overlay.conf \
-    p2p_supplicant_overlay.conf
+    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \

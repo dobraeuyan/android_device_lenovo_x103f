@@ -27,6 +27,12 @@ ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
 
+ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.nap=false
+ro.bluetooth.sap=false
+ro.bluetooth.dun=false
+        
 # B Service Adj Transition
 ro.sys.fw.bservice_enable=true
 ro.sys.fw.bservice_limit=5
@@ -40,6 +46,14 @@ media.stagefright.less-secure=true
 # CNE Module
 persist.cne.feature=1
 
+# Dalvik
+dalvik.vm.heapsize=256m
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+    
 # Data Modules
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
@@ -50,9 +64,10 @@ ro.am.reschedule_service=true
 
 # Display
 ro.opengles.version=196608
-ro.sf.lcd_density=160
+ro.sf.lcd_density=150
 ro.qualcomm.cabl=0
 ro.qcom.screencolor=1
+persist.panel.orientation=90
 
 # Dolby
 audio.dolby.ds2.enabled=true
