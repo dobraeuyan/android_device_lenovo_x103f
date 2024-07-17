@@ -120,7 +120,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.x103f \
     init.x103f.rc \
-    init.x103f.serialno.sh \
     init.x103f.sh \
     init.x103f.usb.rc \
     ueventd.x103f.rc
