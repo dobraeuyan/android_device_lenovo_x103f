@@ -97,6 +97,9 @@ sys.io.scheduler=noop
 # Lockscreen
 lockscreen.rot_override=true
 
+# Media
+drm.service.enabled=true
+
 # MM Modules
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
