@@ -157,3 +157,6 @@ ro.sys.fw.trim_enable_memory=1073741824
 # WFD
 persist.debug.wfd.enable=0
 persist.hwc.enable_vds=1
+
+# Wi-Fi
+wifi.interface=wlan0
