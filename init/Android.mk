@@ -9,7 +9,7 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_CFLAGS := -Wall -DANDROID_TARGET=\"$(TARGET_BOARD_PLATFORM)\"
 LOCAL_CPP_STD := experimental
-LOCAL_SRC_FILES := init_msm8909.cpp
-LOCAL_MODULE := libinit_msm8909
+LOCAL_SRC_FILES := init_x103f.cpp
+LOCAL_MODULE := libinit_x103f
 LOCAL_STATIC_LIBRARIES := libbase libselinux
 include $(BUILD_STATIC_LIBRARY)
