@@ -1,0 +1,10 @@
+# serialno
+type serialno, domain;
+type serialno_exec, exec_type, file_type;
+
+init_daemon_domain(serialno)
+
+allow serialno property_socket:sock_file write;
+allow serialno init:unix_stream_socket connectto;
+allow serialno persist_file:dir search;
+allow serialno system_prop:property_service set;

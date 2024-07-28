@@ -361,11 +361,6 @@ service time_daemon /system/bin/time_daemon
     user root
     group root
 
-service audiod /system/bin/audiod
-    class late_start
-    user system
-    group system
-
 service perfd /system/vendor/bin/perfd
     class main
     user root
@@ -754,22 +749,6 @@ service battery_monitor /system/bin/battery_monitor
     group system
     disabled
 
-service ril-daemon2 /system/bin/rild -c 2
-    class main
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag log
-
-service ril-daemon3 /system/bin/rild -c 3
-    class main
-    socket rild3 stream 660 root radio
-    socket rild-debug3 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag log
-
 service profiler_daemon /system/bin/profiler_daemon
     class late_start
     user root
@@ -859,19 +838,12 @@ on property:sys.wfdservice=enable
 
 on property:sys.wfdservice=disable
     stop wfdservice
-    
-service setprop /system/bin/setproperties
-    user root
-    class main
-    oneshot
-    seclabel u:r:logoem:s0
 
 service fidodaemon /system/vendor/bin/fidodaemon
     class late_start
     user system
     group system
 
-#add poweroffhandler
 service poweroffhandler /system/bin/poweroffhandler
     class core
     user media
@@ -891,6 +863,12 @@ service ppd /system/bin/mm-pp-daemon
     user system
     socket pps stream 0660 system system
     group system graphics
+
+service macplugin /system/bin/macplugin
+    class main
+    user root
+    group root
+    oneshot
 
 service per_mgr /system/bin/pm-service
     class core
@@ -936,7 +914,6 @@ service serialno /system/bin/serialno
     group root
     oneshot
     disabled
-    seclabel u:r:serialno:s0
 
 on property:sys.serialno.set=1
     setprop ro.boardserialno ${persist.sys.boardserialno}

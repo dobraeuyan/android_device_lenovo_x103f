@@ -1,2 +1,0 @@
-allow untrusted_app persist_file:dir search;
-allow untrusted_app device:dir read;

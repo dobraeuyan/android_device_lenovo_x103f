@@ -1,0 +1,7 @@
+# macplugin
+type macplugin, domain;
+type macplugin_exec, exec_type, file_type;
+
+init_daemon_domain(macplugin)
+
+allow macplugin persist_file:dir search;
