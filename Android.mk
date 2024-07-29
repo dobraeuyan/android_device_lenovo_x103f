@@ -26,13 +26,6 @@ $(PERSIST_DICT): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@
 	$(hide) ln -sf /persist/$(notdir $@) $@
 
-PERSIST_MAC := $(TARGET_OUT_ETC)/firmware/wlan/prima/wlan_mac.bin
-$(PERSIST_MAC): $(LOCAL_INSTALLED_MODULE)
-	@echo "wlan_mac.bin Firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /persist/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_CFG_INI) $(PERSIST_DICT) $(PERSIST_MAC)
+ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_CFG_INI) $(PERSIST_DICT)
 
 endif
