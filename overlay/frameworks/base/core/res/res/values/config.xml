@@ -169,6 +169,9 @@
          on the headphone/microphone jack. When false use the older uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
 
+    <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+
     <!-- Hide this setting because we are forcing it to be enabled in build.prop.
          Note: This is declared in both values/config.xml and values-sw600dp/config.xml.
                It is actually the latter definition that wins but overlay both

@@ -16,6 +16,7 @@ PRODUCT_COPY_FILES += \
     
 # Audio
 PRODUCT_PACKAGES += \
+    audiod \
     libqcomvisualizer \
     libqcompostprocbundle \
     libqcomvoiceprocessing \
@@ -225,7 +226,7 @@ PRODUCT_COPY_FILES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    macplugin \
+    libwcnss_qmi \
     wcnss_service \
     libwifi-hal-qcom \
     hostapd \

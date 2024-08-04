@@ -11,6 +11,3 @@
 
 # proprietary bin
 /system/bin/serialno				u:object_r:serialno_exec:s0
-
-# WiFi
-/system/bin/macplugin				u:object_r:macplugin_exec:s0

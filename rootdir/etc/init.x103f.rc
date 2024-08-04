@@ -239,6 +239,10 @@ on boot
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
+    # DT2W
+    chown system system /proc/gesture_enable
+    chmod 0660 /proc/gesture_enable
+
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
@@ -361,6 +365,11 @@ service time_daemon /system/bin/time_daemon
     user root
     group root
 
+service audiod /system/bin/audiod
+    class late_start
+    user system
+    group system
+
 service perfd /system/vendor/bin/perfd
     class main
     user root
@@ -373,7 +382,7 @@ service qcomsysd /system/bin/qcom-system-daemon
     group root qcom_diag
 
 on property:sys.boot_completed=1
-    write /dev/kmsg "Boot completed "
+    write /dev/kmsg "Boot completed"
     
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
     write /sys/module/process_reclaim/parameters/pressure_min 10
@@ -382,12 +391,6 @@ on property:sys.boot_completed=1
     write /sys/module/process_reclaim/parameters/pressure_max 70
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
     
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
-on property:radio.atfwd.start=false
-    stop atfwd
-
 # corefile limit and ETB enabling
 on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
@@ -715,15 +718,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.x103f.post_boot.sh
     disabled
     oneshot
 
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    disabled
-    group system radio
-
-on property:sys.boot_completed=1
-    start atfwd
-
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
     user root
@@ -863,12 +857,6 @@ service ppd /system/bin/mm-pp-daemon
     user system
     socket pps stream 0660 system system
     group system graphics
-
-service macplugin /system/bin/macplugin
-    class main
-    user root
-    group root
-    oneshot
 
 service per_mgr /system/bin/pm-service
     class core

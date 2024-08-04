@@ -1,0 +1,2 @@
+# Touchpanel
+genfscon	proc	/gesture_enable		u:object_r:proc_dt2w:s0

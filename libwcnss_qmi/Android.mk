@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,18 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(call my-dir)
+LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := macplugin.c
-
-LOCAL_SHARED_LIBRARIES := \
-    libbase \
-    libcutils \
-    liblog
-
-LOCAL_MODULE := macplugin
+LOCAL_SRC_FILES := wcnss_qmi_client.c
+LOCAL_C_INCLUDES += hardware/qcom/wlan/wcnss_service
+LOCAL_CFLAGS += -Wall
+LOCAL_SHARED_LIBRARIES := libc libcutils libutils liblog
 LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE := libwcnss_qmi
+include $(BUILD_SHARED_LIBRARY)
 
-include $(BUILD_EXECUTABLE)

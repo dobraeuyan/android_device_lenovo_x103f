@@ -1,2 +1,2 @@
-# persist files
 type persist_misc_file, file_type;
+type proc_dt2w, fs_type;

@@ -25,7 +25,7 @@ $(PERSIST_DICT): $(LOCAL_INSTALLED_MODULE)
 	@mkdir -p $(dir $@)
 	@rm -rf $@
 	$(hide) ln -sf /persist/$(notdir $@) $@
-
+	
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_CFG_INI) $(PERSIST_DICT)
 
 endif
