@@ -780,52 +780,10 @@ service charger_monitor /system/bin/charger_monitor
     group root
     disabled
 
-service qbcharger /charger -m 1
-    disabled
-    oneshot
-
-on property:sys.qbcharger.enable=true
-    write /sys/power/wake_lock QuickBoot
-    start qbcharger
-
-on property:sys.qbcharger.enable=false
-    write /sys/power/wake_unlock QuickBoot
-    stop qbcharger
-
-service qlogd /system/xbin/qlogd
-    socket qlogd stream 0662 system system
-    class main
-    disabled
-    
-on property:persist.sys.qlogd=1
-    start qlogd
-    
-on property:persist.sys.qlogd=0
-    stop qlogd
-
 service vm_bms /system/bin/vm_bms
     user root
     group root
     oneshot
-
-service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
-    class core
-    user root
-    group root
-    disabled
-
-service wfdservice /system/bin/wfdservice
-    class main
-    user system
-    group graphics audio camera inet net_bt net_bt_admin net_bt_stack drmrpc bluetooth media_rw media
-    disabled
-    oneshot
-
-on property:sys.wfdservice=enable
-    start wfdservice
-
-on property:sys.wfdservice=disable
-    stop wfdservice
 
 service fidodaemon /system/vendor/bin/fidodaemon
     class late_start
@@ -863,33 +821,6 @@ on property:init.svc.surfaceflinger=stopped
 on property:init.svc.surfaceflinger=running
     start ppd
 
-service imsdatadaemon /system/bin/imsdatadaemon
-    class main
-    user system
-    socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log qcom_diag net_admin
-    disabled
-
-on property:sys.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
-
-service ims_rtp_daemon /system/bin/ims_rtp_daemon
-    class main
-    user system
-    socket ims_rtpd stream 0660 system radio
-    group radio net_raw diag qcom_diag log inet
-    disabled
-
-service imscmservice /system/bin/imscmservice
-    class main
-    user system
-    group radio net_raw diag qcom_diag log
-    disabled
-
-on property:sys.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start imscmservice
-   
 service serialno /system/bin/serialno
     class main
     user root
