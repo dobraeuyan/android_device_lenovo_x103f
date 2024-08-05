@@ -26,6 +26,7 @@ ro.qualcomm.bt.hci_transport=smd
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
+ro.boot.btmacaddr=00:00:00:00:00:00
 
 ro.qualcomm.bluetooth.opp=true
 ro.qualcomm.bluetooth.ftp=true
@@ -91,9 +92,6 @@ ro.hwui.text_small_cache_height=512
 ro.hwui.r_buffer_cache_size=8
 ro.hwui.text_gamma_correction=true
 
-# IO Scheduler
-sys.io.scheduler=noop
-
 # Lockscreen
 lockscreen.rot_override=true
 
@@ -143,6 +141,7 @@ persist.mm.sta.enable=1
 
 # Storage
 ro.sys.sdcardfs=true
+ro.boot.bootdevice=7824900.sdhci
 
 # Time Services
 persist.timed.enable=true
