@@ -467,11 +467,6 @@ service config_bluetooth /system/bin/sh /system/etc/init.x103f.bt.sh "onboot"
     user root
     oneshot
     
-service lenovo_macaddr /system/bin/sh /system/etc/init.x103f.macaddr.sh
-    class core
-    user root
-    oneshot
-    
 service hciattach /system/bin/sh /system/etc/init.x103f.bt.sh
     class late_start
     user bluetooth
