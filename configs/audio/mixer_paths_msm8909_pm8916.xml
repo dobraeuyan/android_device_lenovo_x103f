@@ -305,7 +305,7 @@
     <path name="low-latency-record">
         <ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="1" />
     </path>
-    <!-- Added by zhangjiaquan to enable low-latency-record bt-sco path A6501M-2252 20160630 begin -->
+
     <path name="low-latency-record bt-sco">
       <ctl name="MultiMedia5 Mixer INTERNAL_BT_SCO_TX" value="1" />
     </path>
@@ -315,7 +315,6 @@
         <path name="low-latency-record bt-sco" />
     </path>
 
-    <!-- Added by zhangjiaquan to enable low-latency-record bt-sco path A6501M-2252 20160630 end -->
     <path name="fm-virtual-record capture-fm">
         <ctl name="MultiMedia2 Mixer INTERNAL_FM_TX" value="1" />
     </path>
@@ -542,7 +541,6 @@
     </path>
 
     <path name="speaker not open PA">
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
         <!--ctl name="RX3 MIX1 INP1" value="RX1" / -->
         <!--ctl name="SPK DAC Switch" value="1" / -->
         <!--ctl name="Speaker Boost" value="ENABLE" / -->
@@ -553,15 +551,12 @@
         <ctl name="HPHL" value="Switch" />
         <ctl name="HPHR" value="Switch" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end  -->
     </path>
 
     <path name="speaker">
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
         <ctl name="Speaker Ext" value="MODE_2" />
         <ctl name="Ext Spk Switch" value="On" />
         <path name="speaker not open PA" />
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end  -->
     </path>
 
     <path name="speaker-mic">
@@ -570,14 +565,12 @@
     </path>
 
     <path name="handset">
-        <!--Modify by zhangkaibi to aviod no sound during voip-call used by handset, because A650X_M have not handset SW00189100 20160722 begain -->
         <!--<ctl name="RX1 MIX1 INP1" value="RX1" />-->
         <!--<ctl name="RDAC2 MUX" value="RX1" />-->
         <!--<ctl name="RX1 Digital Volume" value="84" />-->
         <!--<ctl name="EAR PA Gain" value="POS_6_DB" />-->
         <!--<ctl name="EAR_S" value="Switch" /> -->
 	<path name="speaker" />
-	<!--Modify by zhangkaibi to aviod no sound during voip-call used by handset, because A650X_M have not handset SW00189100 20160722 end -->
     </path>
 
     <path name="handset-mic">
@@ -600,15 +593,12 @@
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
     </path>
 
-    <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
     <path name="second-mic">
         <path name="adc2" />
         <ctl name="ADC2 MUX" value="INP3" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
     </path>
-    <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end  -->
 
-    <!-- Added by zhangwei to fix audio loopback test fail 2016-03-01 begin -->
     <path name="handset-mic-loopback">
         <ctl name="LOOPBACK Mode" value="ENABLE" />
         <ctl name="DEC1 MUX" value="ADC1" />
@@ -644,9 +634,6 @@
         <ctl name="Loopback MCLK" value="ENABLE" />
     </path>
 
-    <!-- Added by zhangwei to fix audio loopback test fail 2016-03-01 end -->
-
-    <!-- Added by chaofubang to add audio audio test SW00188625 20160617 start  -->
     <path name="handset-mic-headset-loopback">
         <ctl name="LOOPBACK Mode" value="ENABLE" />
         <ctl name="DEC1 MUX" value="ADC1" />
@@ -791,7 +778,6 @@
         <ctl name="LOOPBACK Mode" value="DISABLE" />
         <ctl name="Loopback MCLK" value="DISABLE" />
     </path>
-    <!-- Added by chaofubang to add audio audio test SW00188625 20160617 end  -->
 
     <path name="sidetone-iir">
         <ctl name="IIR1 Enable Band1" value="1" />
@@ -827,20 +813,17 @@
     </path>
 
     <path name="voice-handset">
-        <!-- Deleted by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
         <!-- path name="sidetone-handset" /-->
         <path name="handset" />
     </path>
 
     <path name="voice-speaker">
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
         <!-- path name="speaker" / -->
         <ctl name="Speaker Ext" value="MODE_2" />
 		<ctl name="Ext Spk Switch" value="On" />
         <path name="speaker not open PA" />
         <ctl name="RX1 Digital Volume" value="80" />
         <ctl name="RX2 Digital Volume" value="80" />
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end  -->
     </path>
 
     <path name="voice-speaker-mic">
@@ -857,10 +840,7 @@
     </path>
 
     <path name="speaker-and-headphones">
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 begin  -->
         <path name="speaker" />
-        <!--path name="headphones" /-->
-        <!-- Added by zhuyan to enable audio basic function SW00183968 20160203 end  -->
     </path>
 
     <path name="usb-headphones">

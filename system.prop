@@ -1,17 +1,17 @@
 # Audio
-ro.vendor.audio.sdk.fluencetype=none
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
+ro.vendor.audio.sdk.fluencetype=none
 ro.qc.sdk.audio.ssr=false
 persist.speaker.prot.enable=false
 tunnel.audio.encode=false
 audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
-audio.offload.video=true
-audio.offload.gapless.enabled=true
+audio.offload.video=false
+audio.offload.gapless.enabled=false
 voice.playback.conc.disabled=true
-voice.record.conc.disabled=true
+voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
 rec.playback.conc.disabled=true
 use.voice.path.for.pcm.voip=true
@@ -21,18 +21,21 @@ sys.audio.init=false
 ro.cutoff_voltage_mv=3200
 
 # Bluetooth
-qcom.bluetooth.soc=pronto
-ro.qualcomm.bt.hci_transport=smd
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
-ro.boot.btmacaddr=00:00:00:00:00:00
 
+ro.boot.btmacaddr=ac:37:43:bb:3c:da
+#persist.service.bdroid.bdaddr
+
+qcom.bluetooth.soc=pronto
+ro.qualcomm.bt.hci_transport=smd
 ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.hfp=true
+ro.qualcomm.bluetooth.hsp=true
+ro.qualcomm.bluetooth.pbap=true
 ro.qualcomm.bluetooth.ftp=true
-ro.qualcomm.bluetooth.nap=false
-ro.bluetooth.sap=false
-ro.bluetooth.dun=false
+ro.qualcomm.bluetooth.nap=true
         
 # B Service Adj Transition
 ro.sys.fw.bservice_enable=true
@@ -54,7 +57,7 @@ dalvik.vm.heapgrowthlimit=192m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
-    
+
 # Data Modules
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
@@ -79,6 +82,11 @@ ro.frp.pst=/dev/block/bootdevice/by-name/config
 # FM Transmitter
 ro.fm.transmitter=false
 
+# GPS
+ro.gps.agps_provider=1
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+
 # HWUI
 ro.hwui.texture_cache_size=72
 ro.hwui.layer_cache_size=48
@@ -92,12 +100,6 @@ ro.hwui.text_small_cache_height=512
 ro.hwui.r_buffer_cache_size=8
 ro.hwui.text_gamma_correction=true
 
-# Lockscreen
-lockscreen.rot_override=true
-
-# Media
-drm.service.enabled=true
-
 # MM Modules
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
@@ -107,12 +109,8 @@ media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
-mm.enable.qcom_parser=3407871
+mm.enable.qcom_parser=262143
 media.stagefright.use-awesome=false
-
-# No RIL
-ro.carrier=wifi-only
-ro.radio.noril=1
 
 # Other
 qemu.hw.mainkeys=0
@@ -135,6 +133,8 @@ persist.tuning.qdcm=1
 # RIL
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
+ro.carrier=wifi-only
+ro.radio.noril=1
 
 # STA Proxy
 persist.mm.sta.enable=1
@@ -153,9 +153,12 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
-# WFD
+# WiFi
+wifi.interface=wlan0
+
+# WiFi Display
 persist.debug.wfd.enable=0
 persist.hwc.enable_vds=1
 
-# Wi-Fi
-wifi.interface=wlan0
+# Widevine
+drm.service.enabled=true

@@ -9,7 +9,7 @@ PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library \
     libantradio
-    
+
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
     
@@ -40,7 +40,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths_wcd9326_i2s.xml:system/etc/mixer_paths_wcd9326_i2s.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
-        
+
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.disable=1
 
@@ -81,18 +81,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
-    
+
 # Display
 PRODUCT_PACKAGES += \
     hwcomposer.msm8909 \
     gralloc.msm8909 \
     memtrack.msm8909 \
     copybit.msm8909
-    
+
 # EGL implementation
 PRODUCT_PACKAGES += \
     libGLES_android
-    
+
 # FM radio
 PRODUCT_PACKAGES += \
     FMRadio \
@@ -104,12 +104,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/flp.conf:system/etc/flp.conf
-    
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.gps.qc_nlp_in_use=1 \
     persist.loc.nlp_name=com.qualcomm.location \
     ro.gps.agps_provider=1
-    
+
 # Handheld
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
@@ -132,7 +132,7 @@ PRODUCT_PACKAGES += \
 
 # IRSC
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config  
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
     
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -181,7 +181,7 @@ PRODUCT_PACKAGES += \
     dsi_config.xml \
     netmgr_config.xml \
     qmi_config.xml
-    
+
 # Qualcomm dependencies
 PRODUCT_PACKAGES += \
     libtinyxml
