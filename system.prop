@@ -25,9 +25,6 @@ ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
 
-ro.boot.btmacaddr=ac:37:43:bb:3c:da
-#persist.service.bdroid.bdaddr
-
 qcom.bluetooth.soc=pronto
 ro.qualcomm.bt.hci_transport=smd
 ro.qualcomm.bluetooth.opp=true
