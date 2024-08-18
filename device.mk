@@ -4,15 +4,6 @@ $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-he
 
 PRODUCT_CHARACTERISTICS := tablet
 
-# ANT+ stack
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
-
-PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
-    
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
@@ -22,6 +13,7 @@ PRODUCT_PACKAGES += \
     libaudioroute \
     audio.a2dp.default \
     audio.primary.msm8909 \
+    audio_policy.msm909 \
     audio.r_submix.default \
     audio.usb.default \
     tinymix
@@ -31,9 +23,11 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/audio/dax-default.xml:system/vendor/etc/dolby/dax-default.xml \
     $(LOCAL_PATH)/configs/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/mixer_paths_msm8909_pm8916.xml:system/etc/mixer_paths_msm8909_pm8916.xml \
@@ -81,14 +75,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
-
+    
+# Data
+PRODUCT_PACKAGES += \
+    librmnetctl
+    
 # Display
 PRODUCT_PACKAGES += \
     hwcomposer.msm8909 \
     gralloc.msm8909 \
     memtrack.msm8909 \
     copybit.msm8909
-
+    
+# DPM
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/dpm/dpm.conf:system/etc/dpm/dpm.conf \
+    $(LOCAL_PATH)/configs/dpm/nsrm/NsrmConfiguration.xml:system/etc/dpm/nsrm/NsrmConfiguration.xml
+    
 # EGL implementation
 PRODUCT_PACKAGES += \
     libGLES_android
@@ -102,9 +105,13 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/flp.conf:system/etc/flp.conf
-
+    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/configs/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/configs/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/configs/gps/lowi.conf:system/etc/lowi.conf \
+    $(LOCAL_PATH)/configs/gps/sap.conf:system/etc/sap.conf \
+    $(LOCAL_PATH)/configs/gps/xtwifi.conf:system/etc/xtwifi.conf
+    
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.gps.qc_nlp_in_use=1 \
     persist.loc.nlp_name=com.qualcomm.location \
@@ -126,8 +133,6 @@ PRODUCT_PACKAGES += \
     ueventd.x103f.rc
 
 PRODUCT_PACKAGES += \
-    init.x103f.bt.sh \
-    init.x103f.fm.sh \
     init.x103f.post_boot.sh
 
 # IRSC
@@ -142,10 +147,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/Goodix-TS.kl:system/usr/keylayout/Goodix-TS.kl \
     $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/configs/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl
-
-# Lights
+    
+# Keystore
 PRODUCT_PACKAGES += \
-    lights.msm8909
+    keystore.msm8909
 
 # Media
 PRODUCT_PACKAGES += \
@@ -161,8 +166,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libextmedia_jni \
-    libOmxVdecHevc \
-    qcmediaplayer
+    libOmxVdecHevc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles_8909.xml:system/etc/media_profiles.xml \

@@ -58,7 +58,8 @@ on fs
     chown system system /persist/serialno
 
     start serialno
-    start qcom-serialno-sh
+
+    chown system /sys/process/task_comm_list
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -167,10 +168,6 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
     mkdir /persist/drm 0770 system system
-
-    # NFC local data and nfcee xml storage
-    mkdir /data/nfc 0770 nfc nfc
-    mkdir /data/nfc/param 0770 nfc nfc
 
     # Sensor
     mkdir /persist/sensors 0770 system system
@@ -422,17 +419,6 @@ service rmt_storage /system/bin/rmt_storage
     user root
     disabled
 
-on property:wc_transport.start_hci=true
-    start start_hci_filter
-
-on property:wc_transport.start_hci=false
-    stop start_hci_filter
-
-service x103f-bt-sh /system/bin/sh /system/etc/init.x103f.bt.sh "onboot"
-    class core
-    user root
-    oneshot
-
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
     class main
@@ -464,7 +450,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -478,7 +464,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -dd \
+    -O/data/misc/wifi/sockets \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
@@ -491,13 +477,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
-
-service x103f-fm-sh /system/bin/sh /system/etc/init.x103f.fm.sh
-    class late_start
-    user system
-    group system
-    disabled
-    oneshot
 
 service x103f-init-sh /system/bin/sh /init.x103f.sh
     class late_start
@@ -545,11 +524,6 @@ service vm_bms /system/bin/vm_bms
     group root
     oneshot
 
-service fidodaemon /system/vendor/bin/fidodaemon
-    class late_start
-    user system
-    group system
-
 service poweroffhandler /system/bin/poweroffhandler
     class core
     user media
@@ -569,7 +543,7 @@ service ppd /system/bin/mm-pp-daemon
     user system
     socket pps stream 0660 system system
     group system graphics
-
+    
 service per_mgr /system/bin/pm-service
     class core
     user system

@@ -325,8 +325,8 @@
     </path>
 
     <path name="voice2-call usb-headphones">
-       <ctl name="AFE_PCM_RX_Voice Mixer Voice2" value="1" />
-       <ctl name="Voice2_Tx Mixer AFE_PCM_TX_Voice2" value="1" />
+        <ctl name="AFE_PCM_RX_Voice Mixer Voice2" value="1" />
+        <ctl name="Voice2_Tx Mixer AFE_PCM_TX_Voice2" value="1" />
     </path>
 
     <path name="play-fm">
@@ -440,7 +440,7 @@
     <path name="volte-call usb-headphones">
         <ctl name="AFE_PCM_RX_Voice Mixer VoLTE" value="1" />
         <ctl name="VoLTE_Tx Mixer AFE_PCM_TX_VoLTE" value="1" />
-   </path>
+    </path>
 
     <path name="compress-voip-call">
         <ctl name="PRI_MI2S_RX_Voice Mixer Voip" value="1" />
