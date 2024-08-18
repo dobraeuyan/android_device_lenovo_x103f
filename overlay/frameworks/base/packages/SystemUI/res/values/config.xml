@@ -6,7 +6,7 @@
 
     <!-- Whether to clip notification contents with a rounded rectangle. Might be expensive on
          certain GPU's and thus can be turned off with only minimal visual impact. -->
-    <bool name="config_notifications_round_rect_clipping">true</bool>
+    <bool name="config_notifications_round_rect_clipping">false</bool>
 
     <!-- Whether recents should use hardware layers for its taskviews. This flag can be enabled
          for devices where the java drawing of round rects may be slow -->
