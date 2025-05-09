@@ -22,7 +22,7 @@
 
     <!-- Corresponds to color balance level of zero, this is the native
          display temperature -->
-    <integer name="config_dayColorTemperature">5400</integer>
-    <integer name="config_nightColorTemperature">4500</integer>
+    <integer name="config_dayColorTemperature">4700</integer>
+    <integer name="config_nightColorTemperature">4100</integer>
 
 </resources>
