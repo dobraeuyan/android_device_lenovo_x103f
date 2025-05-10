@@ -13,7 +13,7 @@ PRODUCT_PACKAGES += \
     libaudioroute \
     audio.a2dp.default \
     audio.primary.msm8909 \
-    audio_policy.msm909 \
+    audio_policy.msm8909 \
     audio.r_submix.default \
     audio.usb.default \
     tinymix
@@ -34,9 +34,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths_wcd9326_i2s.xml:system/etc/mixer_paths_wcd9326_i2s.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.offload.disable=1
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -75,11 +72,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
-    
-# Data
-PRODUCT_PACKAGES += \
-    librmnetctl
-    
+
 # Display
 PRODUCT_PACKAGES += \
     hwcomposer.msm8909 \
@@ -91,7 +84,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/dpm/dpm.conf:system/etc/dpm/dpm.conf \
     $(LOCAL_PATH)/configs/dpm/nsrm/NsrmConfiguration.xml:system/etc/dpm/nsrm/NsrmConfiguration.xml
-    
+
 # EGL implementation
 PRODUCT_PACKAGES += \
     libGLES_android
@@ -105,13 +98,13 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/izat.conf:system/etc/izat.conf \
     $(LOCAL_PATH)/configs/gps/lowi.conf:system/etc/lowi.conf \
     $(LOCAL_PATH)/configs/gps/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/configs/gps/xtwifi.conf:system/etc/xtwifi.conf
-    
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.gps.qc_nlp_in_use=1 \
     persist.loc.nlp_name=com.qualcomm.location \

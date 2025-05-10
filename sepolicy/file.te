@@ -1,2 +1,4 @@
+# persist files
 type persist_misc_file, file_type;
+# dt2w node
 type proc_dt2w, fs_type;

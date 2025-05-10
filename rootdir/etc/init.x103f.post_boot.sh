@@ -151,13 +151,3 @@ case "$target" in
 	start perfd
     ;;
 esac
-
-# WantJoin co. ltd add
-ProductName=`getprop ro.product.name`
-if [ "$ProductName" == "TB-X103F" ]; then
-    PACKFLTMOD="/system/lib/modules/packfilter.ko"
-    if [ -f "$PACKFLTMOD" ]; then
-        insmod "$PACKFLTMOD"
-    fi
-fi
-# WantJoin co. ltd end

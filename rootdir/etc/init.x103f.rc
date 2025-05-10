@@ -36,7 +36,7 @@ on early-init
     write /sys/kernel/mm/ksm/sleep_millisecs 500
     write /sys/kernel/mm/ksm/run 1
     write /sys/kernel/mm/ksm/deferred_timer 1
-    write /sys/block/mmcblk0/queue/scheduler noop
+    write /sys/block/mmcblk0/queue/scheduler deadline
     write /sys/block/mmcblk0/queue/read_ahead_kb 128
 
     mount debugfs debugfs /sys/kernel/debug
@@ -54,11 +54,6 @@ on fs
     wait /dev/block/bootdevice
     mount_all fstab.x103f
 
-    chmod 664 /persist/serialno
-    chown system system /persist/serialno
-
-    start serialno
-
     chown system /sys/process/task_comm_list
 
 on post-fs-data
@@ -74,9 +69,6 @@ on post-fs-data
 
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
-
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/misc/camera 0770 camera camera
 
     mkdir /data/misc/ipa 0700 net_admin net_admin
 
@@ -161,8 +153,9 @@ on post-fs-data
     #Create folder for qlogd
     mkdir /data/misc/qlogd 0664
 
-    #Create folder for mm-qcamera-daemon
+    #Create folder for camera
     mkdir /data/camera 0770 media camera
+    mkdir /data/misc/camera 0770 camera camera
 
     #Create PERFD deamon related dirs
     mkdir /data/system/perfd 0770 root system
@@ -205,6 +198,8 @@ on early-boot
 
 on boot
     start rmt_storage
+    write /proc/sys/vm/dirty_ratio  5
+    write /proc/sys/vm/dirty_background_ratio  1
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -251,12 +246,12 @@ on boot
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
-    
+
     chown root system /sys/class/power_supply/bms/current_now
     chown root system /sys/class/power_supply/bms/voltage_ocv
     chmod 0664 /sys/class/power_supply/bms/current_now
     chmod 0664 /sys/class/power_supply/bms/voltage_ocv
-    
+
     setprop wifi.interface wlan0
 
 #   Define TCP buffer sizes for various networks
@@ -374,7 +369,7 @@ on property:sys.boot_completed=1
 
     write /sys/module/process_reclaim/parameters/pressure_max 70
     write /sys/module/process_reclaim/parameters/swap_opt_eff 30
-    
+
 # corefile limit and ETB enabling
 on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
@@ -423,7 +418,7 @@ service rmt_storage /system/bin/rmt_storage
 service qmuxd /system/bin/qmuxd
     class main
     user root
-    group radio audio bluetooth gps nfc qcom_diag
+    group radio audio bluetooth gps qcom_diag
     disabled
 
 service netmgrd /system/bin/netmgrd
@@ -554,13 +549,6 @@ on property:init.svc.surfaceflinger=stopped
 
 on property:init.svc.surfaceflinger=running
     start ppd
-
-service serialno /system/bin/serialno
-    class main
-    user root
-    group root
-    oneshot
-    disabled
 
 on property:sys.serialno.set=1
     setprop ro.boardserialno ${persist.sys.boardserialno}

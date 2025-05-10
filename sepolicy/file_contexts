@@ -10,4 +10,3 @@
 /system/etc/firmware(/.*)?			u:object_r:firmware_file:s0
 
 # proprietary bin
-/system/bin/serialno				u:object_r:serialno_exec:s0
