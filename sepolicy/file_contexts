@@ -8,5 +8,3 @@
 # firmware images
 /firmware/image(/.*)?				u:object_r:firmware_file:s0
 /system/etc/firmware(/.*)?			u:object_r:firmware_file:s0
-
-# proprietary bin

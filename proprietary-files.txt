@@ -53,8 +53,6 @@ lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
 lib/libtsvideoprocess.so
-vendor/lib/libjpegdhw.so
-vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
 vendor/lib/libmmcamera2_imglib_modules.so
@@ -156,7 +154,6 @@ framework/com.qti.dpmframework.jar
 framework/com.quicinc.cne.jar
 framework/ConnectivityExt.jar
 framework/dpmapi.jar
--priv-app/CNEService/CNEService.apk
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneconn.so
@@ -169,6 +166,11 @@ vendor/lib/libvendorconn.so
 # DRM
 bin/qcom-system-daemon
 bin/qseecomd
+etc/firmware/widevine.b00
+etc/firmware/widevine.b01
+etc/firmware/widevine.b02
+etc/firmware/widevine.b03
+etc/firmware/widevine.mdt
 etc/permissions/com.google.widevine.software.drm.xml
 framework/com.google.widevine.software.drm.jar
 vendor/lib/libQSEEComAPI.so
@@ -246,9 +248,6 @@ lib/hw/lights.msm8909.so
 vendor/lib/liblistenjni.so
 vendor/lib/liblistensoundmodel2.so
 
-# Lenovo
-bin/serialno
-
 # Media
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmm-color-convertor.so
@@ -306,8 +305,6 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libsmemlog.so
 
 # Radio
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
--priv-app/QtiTetherService/QtiTetherService.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
