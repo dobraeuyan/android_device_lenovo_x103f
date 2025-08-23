@@ -32,7 +32,7 @@ Front Camera | 2 MP
 | **Bluetooth**             | :heavy_check_mark: |
 | **GPS**                   | :heavy_check_mark: |
 | **Camera Photos**         | :heavy_check_mark: |
-| **Videocamera**           | |
+| **Videocamera**           | :heavy_check_mark: |
 | **Audio**                 | :heavy_check_mark: |
 | **Jack**                  | :heavy_check_mark: |
 | **Microphone**            | :heavy_check_mark: |

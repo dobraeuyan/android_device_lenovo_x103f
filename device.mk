@@ -121,12 +121,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.x103f \
     init.x103f.rc \
-    init.x103f.sh \
     init.x103f.usb.rc \
     ueventd.x103f.rc
-
-PRODUCT_PACKAGES += \
-    init.x103f.post_boot.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \

@@ -48,7 +48,7 @@ vendor/lib/soundfx/libswdap.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8909.so
+lib/hw/camera.msm8909.so:lib/hw/camera.vendor.msm8909.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
@@ -132,12 +132,12 @@ vendor/lib/libchromatix_sp2508_brodsands_ffln_78_preview.so
 vendor/lib/libchromatix_sp2508_brodsands_ffln_78_snapshot.so
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
-etc/firmware/leia_pm4_470.fw
-etc/firmware/leia_pfp_470.fw
+etc/firmware/cpp_firmware_v1_1_1.fw:vendor/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw:vendor/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw:vendor/firmware/cpp_firmware_v1_2_0.fw
+etc/firmware/cpp_firmware_v1_4_0.fw:vendor/firmware/cpp_firmware_v1_4_0.fw
+etc/firmware/leia_pm4_470.fw:vendor/firmware/leia_pm4_470.fw
+etc/firmware/leia_pfp_470.fw:vendor/firmware/leia_pfp_470.fw
 
 # CNE / DPM
 bin/cnd
@@ -166,11 +166,11 @@ vendor/lib/libvendorconn.so
 # DRM
 bin/qcom-system-daemon
 bin/qseecomd
-etc/firmware/widevine.b00
-etc/firmware/widevine.b01
-etc/firmware/widevine.b02
-etc/firmware/widevine.b03
-etc/firmware/widevine.mdt
+etc/firmware/widevine.b00:vendor/firmware/widevine.b00
+etc/firmware/widevine.b01:vendor/firmware/widevine.b01
+etc/firmware/widevine.b02:vendor/firmware/widevine.b02
+etc/firmware/widevine.b03:vendor/firmware/widevine.b03
+etc/firmware/widevine.mdt:vendor/firmware/widevine.mdt
 etc/permissions/com.google.widevine.software.drm.xml
 framework/com.google.widevine.software.drm.jar
 vendor/lib/libQSEEComAPI.so
@@ -186,15 +186,11 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
 bin/loc_launcher
-etc/permissions/com.qti.location.sdk.xml
-etc/permissions/com.qualcomm.location.xml
-framework/com.qti.location.sdk.jar
 lib/hw/gps.default.so
 lib/libgps.utils.so
 lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_eng.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/bin/slim_daemon
 vendor/lib/hw/flp.default.so
 vendor/lib/libalarmservice_jni.so
@@ -231,15 +227,10 @@ vendor/lib/libRSDriver_adreno.so
 vendor/lib/libsc-a3xx.so
 
 # Graphics firmware
-etc/firmware/a225_pfp.fw
-etc/firmware/a225_pm4.fw
-etc/firmware/a225p5_pm4.fw
-etc/firmware/a300_pfp.fw
-etc/firmware/a300_pm4.fw
-etc/firmware/a330_pfp.fw
-etc/firmware/a330_pm4.fw
-etc/firmware/a420_pfp.fw
-etc/firmware/a420_pm4.fw
+etc/firmware/a300_pfp.fw:vendor/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw:vendor/firmware/a300_pm4.fw
+etc/firmware/a330_pfp.fw:vendor/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw:vendor/firmware/a330_pm4.fw
 
 # Lights
 lib/hw/lights.msm8909.so
@@ -258,13 +249,13 @@ vendor/lib/libOmxMux.so
 vendor/lib/libOmxQcelp13Dec.so
 
 # Media firmware
-etc/firmware/venus.b00
-etc/firmware/venus.b01
-etc/firmware/venus.b02
-etc/firmware/venus.b03
-etc/firmware/venus.b04
-etc/firmware/venus.mbn
-etc/firmware/venus.mdt
+etc/firmware/venus.b00:vendor/firmware/venus.b00
+etc/firmware/venus.b01:vendor/firmware/venus.b01
+etc/firmware/venus.b02:vendor/firmware/venus.b02
+etc/firmware/venus.b03:vendor/firmware/venus.b03
+etc/firmware/venus.b04:vendor/firmware/venus.b04
+etc/firmware/venus.mbn:vendor/firmware/venus.mbn
+etc/firmware/venus.mdt:vendor/firmware/venus.mdt
 
 # Perf
 vendor/bin/perfd

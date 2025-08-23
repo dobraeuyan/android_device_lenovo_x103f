@@ -49,7 +49,7 @@ on property:sys.usb.config=midi,adb
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
-on property:sys.usb.config=rndis,none
+on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 17ef
     write /sys/class/android_usb/android0/idProduct F00E
@@ -57,7 +57,7 @@ on property:sys.usb.config=rndis,none
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state rndis
 
-on property:sys.usb.config=rndis,none,adb
+on property:sys.usb.config=rndis,adb
     stop adbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 17ef
@@ -113,7 +113,6 @@ on property:sys.usb.config=mass_storage,adb
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
-#Mass-storage only composition
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 17ef
