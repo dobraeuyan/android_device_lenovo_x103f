@@ -1,7 +1,5 @@
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
-$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
-
 PRODUCT_CHARACTERISTICS := tablet
 
 # Audio
@@ -66,12 +64,12 @@ PRODUCT_PACKAGES += \
     
 # Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=256m \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=192m \
+    dalvik.vm.heapsize=128m \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=96m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
+    dalvik.vm.heapmaxfree=4m
 
 # Display
 PRODUCT_PACKAGES += \
@@ -106,8 +104,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/xtwifi.conf:system/etc/xtwifi.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.gps.qc_nlp_in_use=1 \
-    persist.loc.nlp_name=com.qualcomm.location \
     ro.gps.agps_provider=1
 
 # Handheld

@@ -65,15 +65,30 @@ on post-fs-data
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
 
+    mkdir /data/data/media 0770 media media
     mkdir /data/misc/dts 0770 media audio
     mkdir /data/misc/qsee 0770 system system
     mkdir /data/misc/ipa 0700 net_admin net_admin
+
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+    chown system graphics /sys/class/graphics/fb0/dynamic_fps
+    chmod 0664 /sys/class/graphics/fb0/dynamic_fps
+    chown system graphics /sys/class/graphics/fb0/dyn_pu
+    chmod 0664 /sys/class/graphics/fb0/dyn_pu
+    chown system graphics /sys/class/graphics/fb0/modes
+    chmod 0664 /sys/class/graphics/fb0/modes
+    chown system graphics /sys/class/graphics/fb0/mode
+    chmod 0664 /sys/class/graphics/fb0/mode
+
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+
+    chown media_rw media_rw /data/media
 
     mkdir /data/connectivity 0771 system system
     chown system system /data/connectivity
@@ -121,8 +136,8 @@ on post-fs-data
     mkdir /data/camera 0770 media camera
     mkdir /data/misc/camera 0770 camera camera
     mkdir /persist/sensors 0770 system system
-    
-    chmod 0775 /persist/sensors
+
+    mkdir /persist/sensors 0775 system
     chmod 0664 /persist/sensors/sensors_settings
     chown system root /persist/sensors/sensors_settings
     mkdir /data/misc/sensors 0775
@@ -136,10 +151,9 @@ on early-boot
 
 on boot
     start rmt_storage
-    write /proc/sys/vm/dirty_ratio  5
-    write /proc/sys/vm/dirty_background_ratio  1
 
-    chown media_rw media_rw /data/media
+    write /proc/sys/vm/dirty_ratio  10
+    write /proc/sys/vm/dirty_background_ratio  5
 
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/device/extldo
@@ -182,9 +196,6 @@ on boot
 
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
-
-    #Create NETMGR daemon socket area
-    mkdir /dev/socket/netmgr 0750 radio radio
 
     chmod 0664 /sys/class/sensors/kionix-accel/enable
     chown input system /sys/class/sensors/kionix-accel/enable
@@ -317,11 +328,54 @@ on property:sys.boot_completed=1
     swapon_all fstab.x103f
     write /proc/sys/vm/swappiness 100
 
-    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
-    write /sys/module/process_reclaim/parameters/pressure_min 10
-    write /sys/module/process_reclaim/parameters/per_swap_size 1024
-    write /sys/module/process_reclaim/parameters/pressure_max 70
-    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
+    # Low Memory Killer
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,42496,54493,66993"
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 79493
+
+    # HMP scheduler settings
+    write /proc/sys/kernel/sched_window_stats_policy 3
+    write /proc/sys/kernel/sched_ravg_hist_size 3
+    write /proc/sys/kernel/sched_small_task 20
+    write /proc/sys/kernel/sched_mostly_idle_load 30
+    write /proc/sys/kernel/sched_mostly_idle_nr_run 3
+
+    # CPU governor and frequency settings
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 800000
+    write /sys/module/msm_thermal/core_control/enabled 1
+
+    # Interactive governor settings
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "30000 1267200:50000"
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 998400
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "1 800000:85 998400:90 1267200:80"
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 50000
+    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 50000
+
+    # CPU Boost settings
+    write /sys/module/cpu_boost/parameters/input_boost_freq 1267200
+    write /sys/module/cpu_boost/parameters/input_boost_ms 500
+
+    # Bring up all cores
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Devfreq governor settings
+    write /sys/class/devfreq/qcom,cpubw.32/governor "bw_hwmon"
+    write /sys/class/devfreq/qcom,cpubw.32/bw_hwmon/bw_step 60
+    write /sys/class/devfreq/qcom,cpubw.32/bw_hwmon/guard_band_mbps 30
+    
+    write /sys/class/devfreq/qcom,gpubw.23/bw_hwmon/io_percent 40
+    write /sys/class/devfreq/qcom,gpubw.23/bw_hwmon/bw_step 60
+    write /sys/class/devfreq/qcom,gpubw.23/bw_hwmon/guard_band_mbps 30
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -420,7 +474,7 @@ service wcnss-service /system/bin/wcnss_service
 service per_mgr /system/bin/pm-service
     class core
     user system
-    group system net_raw
+    group system radio net_raw
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
