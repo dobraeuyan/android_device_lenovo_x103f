@@ -16,5 +16,3 @@
 /dev/block/platform/soc/7824900\.sdhci/by-name/config     u:object_r:frp_block_device:s0
 
 /mnt/per/sensors(/.*)?                                    u:object_r:persist_sensors_file:s0
-
-/mnt/per/display(/.*)?                                   u:object_r:persist_display_file:s0
