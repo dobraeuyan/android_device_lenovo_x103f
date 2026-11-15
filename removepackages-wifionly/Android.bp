@@ -1,0 +1,13 @@
+android_app {
+    name: "RemovePackagesX103Wifi",
+    manifest: "AndroidManifest.xml",
+    certificate: "platform",
+    sdk_version: "current",
+
+    dex_preopt: {
+        enabled: false,
+    },
+    overrides: [
+        "TeleService",
+    ],
+}

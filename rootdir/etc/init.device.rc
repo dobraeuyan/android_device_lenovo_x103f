@@ -1,6 +1,4 @@
 on post-fs
-    write /sys/module/firmware_class/parameters/path /mnt/fwmt/image
-
     start vendor.qseecomd
 
     start vendor.qsee-kmload
